@@ -20,7 +20,7 @@ opt.log.cool.finish = true; //[12]
 opt.log.cool.set = true; //[13]
 
 opt.log.cool.debug = true; //[14]
-opt.log.cool.interval = 60; //[15]
+opt.log.cool.interval = 300; //[15]
 
 /*
 Help Guide:
@@ -30,7 +30,7 @@ Help Guide:
 [4]: Follow user when he or she makes a comment.
 [5]: Set the cooldown between follows.
 
-[6]: Mode to run the bot. There are 2 available modes.
+[6]: Mode to run the bot. There are 4 available modes.
  - watcher
  - actor
  - superior
