@@ -7,7 +7,7 @@ opt.log.cool = {};
 opt.user = ''; //[1]
 opt.wif = ''; //[2]
 opt.webSocket = ''; //[3]
-opt.onComment = true; //[4]
+opt.onPost = true; //[4]
 opt.cooldown = '15 min'; //[5]
 opt.mode = 'superior'; //[6]
 
