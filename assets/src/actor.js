@@ -83,6 +83,7 @@ var x = module.exports = {
         function(err, result) {
           if (err && _.log.errors == true) return log.error(err);
           if (_.log.follow == true) log.success(`[FOLLOWING]: You are now following user [ ${author} ]`);
+          if (_.reply.blog == true || _.reply.comment == true) req.reply().start(author);
           return x.setDone(author);
         }
       );

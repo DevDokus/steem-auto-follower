@@ -23,7 +23,7 @@ module.exports = {
     }, 1000);
 
     function DB() {
-      sqlite.run(`create table if not exists pending (author text)`);
+      sqlite.run(`create table if not exists pending (author text, type text, data text)`);
       sqlite.run(`create table if not exists done (author text)`);
     }
 
@@ -51,11 +51,17 @@ module.exports = {
       }
 
       var mode = _.mode.toLowerCase();
-      if (mode == 'watcher') return req.watcher().start(webSocket);
       if (mode == 'actor') return req.actor().start(webSocket);
+
       if (mode == 'superior' || mode == 'dry') {
-        req.watcher().start(webSocket);
+        req.post().start(webSocket);
         req.actor().start(webSocket);
+        return;
+      };
+
+      if (mode == 'watcher') {
+        req.post().start(webSocket);
+        req.comment().start(webSocket);
         return;
       }
 

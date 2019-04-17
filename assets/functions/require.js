@@ -13,8 +13,12 @@ module.exports = {
     return require('../src/index.js');
   },
 
-  watcher: () => {
-    return require('../src/watcher.js');
+  post: () => {
+    return require('../src/post.js');
+  },
+
+  comment: () => {
+    return require('../src/comment.js');
   },
 
   actor: () => {
@@ -32,6 +36,10 @@ module.exports = {
   success: () => {
     return require('../strings/success.js');
   },
+
+  reply: () => {
+    return require('../src/reply.js');
+  }
 
 
 };

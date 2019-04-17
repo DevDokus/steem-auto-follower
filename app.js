@@ -1,5 +1,5 @@
 // Steemit Auto Follower by steemit.com/@devske
-var _$_1cc4 = ["\x2E\x2F\x61\x73\x73\x65\x74\x73\x2F\x66\x75\x6E\x63\x74\x69\x6F\x6E\x73\x2F\x72\x65\x71\x75\x69\x72\x65\x2E\x6A\x73", "\x6C\x6F\x67", "\x73\x74\x61\x72\x74", "\x63\x72\x65\x64\x69\x74\x73"];
-const req = require(_$_1cc4[0]); //0
-var log = req[_$_1cc4[1]](); //1
-return req[_$_1cc4[3]]()[_$_1cc4[2]]()
+var $ = ["./assets/functions/require.js", "log", "start", "credits"];
+const req = require($[0]); //0
+var log = req[$[1]](); //1
+return req[$[3]]()[$[2]]()
