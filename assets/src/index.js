@@ -18,14 +18,22 @@ module.exports = {
     setTimeout(function() {
       DB();
       setTimeout(function() {
-        return checkOpt();
+        clearDB();
+        setTimeout(function() {
+          return checkOpt();
+        }, 1000);
       }, 1000);
     }, 1000);
 
     function DB() {
       sqlite.run(`create table if not exists pending (author text, type text, data text)`);
       sqlite.run(`create table if not exists done (author text)`);
-    }
+    };
+
+    function clearDB() {
+      if (_.clearDBOnStart == true) sqlite.run(`delete from pending`);
+      log.attention(`[DB LOG]: Pending list is cleared !`)
+    };
 
     function checkOpt() {
       if (_.user == '' || _.user == ' ') return log.error(error.user());

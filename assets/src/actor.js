@@ -18,13 +18,14 @@ var warn = req.warn();
 var suc = req.success();
 var mode = _.mode;
 
-tiny.on('done', ()=> {
+tiny.on('done', () => {
   if (_.log.cool.finish == true) log.attention(`[COOLDOWN]: Has finished, waiting for new follow.`);
   cool = 0;
   return;
 });
 
 var time = [];
+
 function seeTime() {
   var count = cooldown() + 1500;
   var end = new Date(new Date().getTime() + count);
@@ -32,8 +33,8 @@ function seeTime() {
     time = [];
     time.push(`${timeLeft.minutes}:${timeLeft.seconds}`);
   }, function() {
-      time = [];
-      if (_.log.cool.finish == true) log.attention(`[TIMER]: Cooldown timer (TIME) has been reset`);
+    time = [];
+    if (_.log.cool.finish == true) log.attention(`[TIMER]: Cooldown timer (TIME) has been reset`);
   });
 }
 
@@ -46,13 +47,17 @@ function cooldown() {
 var x = module.exports = {
 
   start: (web) => {
+    if (_.clearDBOnStart == true) {
+      cool = 1;
+      seeTime();
+    }
     x.check(web);
-    setInterval(async function () {
+    setInterval(async function() {
       return x.check(web);
     }, _.log.cool.interval * 1000);
   },
 
-  check: (web)=> {
+  check: (web) => {
     return start();
     async function start() {
       if (_.log.cool.debug == true && cool == 1) return log.attention(`[COOLDOWN]: Hot Hot Hot Hot.. TO HOT (${time})`);
@@ -70,14 +75,18 @@ var x = module.exports = {
   follow: (web, author) => {
     var follower = _.user;
     var following = author;
-    steem.api.setOptions({ url: web });
+    steem.api.setOptions({
+      url: web
+    });
     var json = JSON.stringify(['follow', {
-      follower: follower, following: following, what: ['blog']
+      follower: follower,
+      following: following,
+      what: ['blog']
     }]);
 
     if (mode == 'dry') {
-          if (_.log.follow == true) log.success(`[FOLLOWING]: You are now following user [ ${author} ]`);
-          return x.setDone(author);
+      if (_.log.follow == true) log.success(`[FOLLOWING]: You are now following user [ ${author} ]`);
+      return x.setDone(author);
     } else {
       steem.broadcast.customJson(_.wif, [], [follower], 'follow', json,
         function(err, result) {
@@ -90,7 +99,7 @@ var x = module.exports = {
     }
   },
 
-  setDone: (author)=> {
+  setDone: (author) => {
     try {
       if (mode == 'dry') {
         if (_.log.dbInserts == true) log.info(`[DB INSERT]: Steemian [ ${author} ] is recorded as done`);
@@ -105,7 +114,7 @@ var x = module.exports = {
     }
   },
 
-  dbDelete: (author)=> {
+  dbDelete: (author) => {
     try {
       if (mode == 'dry') {
         if (_.log.follow == true) log.info(`[DB DELETE]: Steemian [ ${author} ] deleted out of Pending.`);
@@ -118,7 +127,7 @@ var x = module.exports = {
     }
   },
 
-  exit: ()=> {
+  exit: () => {
     if (mode == 'dry') return;
     log.error(error.noData());
     return process.exit();

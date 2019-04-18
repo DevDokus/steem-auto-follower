@@ -27,12 +27,14 @@ opt.log.errors = false; //[8]
 opt.log.replies = true; //[22]
 opt.log.dbInserts = true; //[9]
 opt.log.dbCleans = false; //[10]
-opt.log.dbDeletes = false; //[11]
-opt.log.cool.finish = false; //[12]
+opt.log.dbDeletes = true; //[11]
+opt.log.cool.finish = true; //[12]
 opt.log.cool.set = true; //[13]
 
 opt.log.cool.debug = true; //[14]
-opt.log.cool.interval = 300; //[15]
+opt.log.cool.interval = 60; //[15]
+
+opt.clearDBOnStart = true; //[23]
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
@@ -68,6 +70,13 @@ Help Guide:
 [13]: Log when a new cooldown is set.
 [14]: Log the cooldown debug messages.
 [15]: Set the cooldown debug interval in seconds.
+
+[23]: Clear the pending list of users to follow on startup.
+This will clear the database to make sure you are not
+following / replying to old blogs or comments.
+If this is activated the program will go into a cooldown
+before following the first user. This to make sure that you
+do not instant follow / reply to the user.
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
