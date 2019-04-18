@@ -19,7 +19,7 @@ So come back later for more features !
 <hr>
 
 ## How to start the script ?
-When you have installed the dependencies via the **install.bat**, <br>
+When you have installed the dependencies, <br>
 and when you have set all parameters in the **settings.js**, <br>
 you can simply double click and activate the **start.bat** <br>
 and enjoy the magic happening!
@@ -34,7 +34,8 @@ https://nodejs.org/dist/v10.15.3/
 * After you installed node you need to extract <br>
 the *.rar* file Github will provide you.
 
-* Click on the **install.bat** file. <br>
+* **Windows:** Click on the **_install_windows.bat** file. <br>
+* **Linux:** Click on the **_install.linux.sh** file <br>
 This will install the node dependencies.
 <hr>
 
