@@ -47,6 +47,7 @@ var x = module.exports = {
 
     comment: async function(author) {
       var dbGet = await sqlite.get(`select * from pending where author = '${author}' and type = 'comment'`);
+      if (!dbGet) return;
       var data = JSON.parse(dbGet.data);
       var targetPermlink = data.targetPermlink;
       var link = steem.formatter.commentPermlink(author, targetPermlink);
